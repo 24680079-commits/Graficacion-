@@ -88,6 +88,8 @@ Esto permitió comprender cómo Blender responde a instrucciones escritas en Pyt
 Finalmente, se utilizó el Text Editor dentro de la sección Scripting para escribir código en Python que permite crear un polígono en 2D.
 ⸻
 # codigo 
+
+```bash
 import bpy
 import math
 
@@ -127,6 +129,8 @@ def crear_poligono_2d(nombre, lados, radio):
 #Llamada a la función: Un hexágono de radio 5
 
 crear_poligono_2d("Poligono2D", lados=8, radio=10)
+
+```
 ⸻
 
 •	Se usa la librería bpy, integrada en Blender.
