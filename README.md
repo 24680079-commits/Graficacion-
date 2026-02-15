@@ -157,3 +157,212 @@ Con esta práctica se aprendió:
 	•	A crear figuras geométricas mediante código en Python dentro de Blender.
 
 Este repositorio representa mis primeros trabajos en la materia de Graficación.
+
+
+#  Practica 2
+
+# Construcción de Patrón Circular (Flor de la Vida)
+
+En esta práctica trabajé con Blender y Python (bpy) para generar una figura basada en la distribución geométrica de círculos utilizando coordenadas polares.
+
+El objetivo fue comprender:
+
+Conversión de coordenadas polares a cartesianas.
+
+Distribución angular uniforme.
+
+Uso de estructuras de control (while).
+
+Automatización de patrones geométricos.
+
+1. Base Matemática
+
+Para posicionar los círculos alrededor del círculo central no utilicé coordenadas X e Y directamente.
+
+En su lugar, utilicé coordenadas polares (r, θ) y después las convertí a coordenadas cartesianas usando:
+
+𝑥
+=
+𝑟
+⋅
+𝑐
+𝑜
+𝑠
+(
+𝜃
+)
+x=r⋅cos(θ)
+𝑦
+=
+𝑟
+⋅
+𝑠
+𝑖
+𝑛
+(
+𝜃
+)
+y=r⋅sin(θ)
+
+En Python, como las funciones math.cos() y math.sin() trabajan en radianes, utilicé:
+
+```bash
+
+math.radians(angulo_actual)
+```
+
+Esto convierte los grados a radianes.
+
+ 2. Limpieza de Escena
+
+Antes de generar la figura, limpié la escena para evitar que los objetos se encimaran en cada ejecución:
+```
+bpy.ops.object.select_all(action='SELECT')
+bpy.ops.object.delete()
+```
+Esto garantiza que cada vez que ejecute el script, la escena esté vacía.
+<img width="1792" height="1120" alt="Captura de pantalla 2026-02-14 a la(s) 22 36 29" src="https://github.com/user-attachments/assets/5fd491da-54e0-4489-b03c-c79b7ba35895" />
+
+ 3. Definición de Parámetros
+
+Definí las variables principales:
+
+radio = 3
+angulo_actual = 0
+paso_angular = 20
+
+radio: Tamaño del círculo.
+
+angulo_actual: Ángulo inicial.
+
+paso_angular: Cantidad de grados que se suman en cada iteración.
+
+⚠ Nota: En el documento el ejemplo menciona 60°, pero en mi práctica utilicé 20° para generar mayor densidad de círculos y un patrón más complejo.
+
+4. Creación del Círculo Central
+
+Primero generé el círculo base en el origen:
+
+bpy.ops.mesh.primitive_circle_add(radius=radio, location=(0, 0, 0), vertices=64)
+
+Este círculo sirve como referencia para posicionar los demás.
+
+<img width="1792" height="1120" alt="Captura de pantalla 2026-02-14 a la(s) 22 37 46" src="https://github.com/user-attachments/assets/7fe30b61-3f0c-4d1c-88c5-a9a4de672f76" />
+
+
+5. Construcción Manual Inicial
+
+Para comprender mejor la lógica, primero generé los primeros dos círculos manualmente:
+```
+x1 = radio * math.cos(math.radians(angulo_actual))
+y1 = radio * math.sin(math.radians(angulo_actual))
+```
+Después incrementé el ángulo:
+
+angulo_actual += paso_angular
+
+Y repetí el procedimiento.
+
+Esto me permitió entender cómo el ángulo afecta la posición del nuevo círculo.
+
+ 6. Automatización con While
+
+Después de entender la lógica, implementé una estructura while para evitar repetir el código manualmente.
+```
+while angulo_actual < 360:
+
+```
+ Lógica del ciclo:
+
+Verifica que el ángulo sea menor a 360°.
+
+Calcula la nueva posición (x, y).
+
+Crea el círculo en esa posición.
+
+Incrementa el ángulo.
+
+Repite hasta completar la circunferencia.
+
+Código:
+```
+while angulo_actual < 360:
+    x = radio * math.cos(math.radians(angulo_actual))
+    y = radio * math.sin(math.radians(angulo_actual))
+    
+    bpy.ops.mesh.primitive_circle_add(
+        radius=radio,
+        location=(x, y, 0),
+        vertices=64
+    )
+    
+    angulo_actual += paso_angular
+```
+ # Importancia de Incrementar el Ángulo
+
+Esta línea es crítica:
+
+angulo_actual += paso_angular
+
+Si no se incrementa el ángulo:
+
+El ciclo nunca terminaría.
+
+Se generaría un bucle infinito.
+
+Blender podría congelarse.
+
+ 7. Resultado Final
+
+Al finalizar la ejecución del script se genera un patrón circular distribuido uniformemente alrededor del círculo central.
+
+Como utilicé un paso de 20°, el patrón tiene más círculos que el ejemplo tradicional de 6 círculos (60°).
+
+<img width="1792" height="1120" alt="Captura de pantalla 2026-02-14 a la(s) 22 40 51" src="https://github.com/user-attachments/assets/f5d75aad-eb26-4cb5-8da0-2dc9eb930d49" />
+
+CODIGO: 
+```
+  import bpy
+import math
+
+# Limpiar escena
+bpy.ops.object.select_all(action='SELECT')
+bpy.ops.object.delete()
+
+# Parámetros de la figura
+radio = 3
+angulo_actual = 0
+paso_angular = 20  # Cada 60 grados para obtener 6 círculos alrededor
+
+# 1. Círculo Central
+bpy.ops.mesh.primitive_circle_add(radius=radio, location=(0, 0, 0), vertices=64)
+
+# --- INICIO DEL PATRÓN REPETITIVO ---
+
+# Círculo 1 (Manual)
+x1 = radio * math.cos(math.radians(angulo_actual))
+y1 = radio * math.sin(math.radians(angulo_actual))
+bpy.ops.mesh.primitive_circle_add(radius=radio, location=(x1, y1, 0), vertices=64)
+
+# Círculo 2 (Manual)
+angulo_actual += paso_angular
+x2 = radio * math.cos(math.radians(angulo_actual))
+y2 = radio * math.sin(math.radians(angulo_actual))
+bpy.ops.mesh.primitive_circle_add(radius=radio, location=(x2, y2, 0), vertices=64)
+
+# --- CONTINUACIÓN AUTOMÁTICA CON WHILE ---
+
+angulo_actual += paso_angular
+
+while angulo_actual < 360:
+    x = radio * math.cos(math.radians(angulo_actual))
+    y = radio * math.sin(math.radians(angulo_actual))
+    
+    bpy.ops.mesh.primitive_circle_add(
+        radius=radio,
+        location=(x, y, 0),
+        vertices=64
+    )
+    
+    angulo_actual += paso_angular
+```
