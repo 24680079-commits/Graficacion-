@@ -1,4 +1,304 @@
 # Graficacion-
+# Unidad 1
+# Introducción a la Graficación por Computadora
+
+La graficación por computadora (Computer Graphics) es el área de la informática encargada de la generación, manipulación y representación de imágenes mediante algoritmos y modelos matemáticos, utilizando hardware y software especializado.
+
+De acuerdo con textos clásicos como Computer Graphics with OpenGL y Interactive Computer Graphics, la graficación se basa en la combinación de:
+
+Matemáticas (álgebra lineal y geometría)
+
+Programación
+
+Física (iluminación y óptica)
+
+Procesamiento digital de imágenes
+
+En términos prácticos, cuando usas Blender, todo lo que ves en pantalla es el resultado de:
+
+Modelos matemáticos
+
+Transformaciones geométricas
+
+Cálculo de iluminación
+
+Procesamiento de píxeles
+
+# 1.1 Historia y evolución de la graficación por computadora
+- Década de 1950–1960
+
+Primeros gráficos vectoriales.
+
+Uso en radares y simuladores militares.
+
+Desarrollo del sistema Sketchpad por Ivan Sutherland.
+
+- Década de 1970
+
+Desarrollo de algoritmos fundamentales:
+
+Algoritmo de Bresenham (líneas)
+
+Algoritmos de recorte
+
+Aparecen los primeros gráficos 3D básicos.
+
+- Década de 1980
+
+Introducción del renderizado con sombreado.
+
+Uso en cine y animación.
+
+Desarrollo de tarjetas gráficas dedicadas.
+
+- Década de 1990
+
+Popularización del 3D en videojuegos.
+
+Uso de OpenGL y DirectX.
+
+- 2000–Actualidad
+
+Renderizado fotorrealista.
+
+Ray Tracing en tiempo real.
+
+GPU de alto rendimiento.
+
+Motores como Cycles y Eevee en Blender.
+
+# 1.2 Áreas de aplicación
+
+La graficación tiene múltiples aplicaciones:
+
+🎮 Videojuegos
+
+Modelado 3D, animación, iluminación en tiempo real.
+
+🎬 Cine y animación
+
+Efectos visuales (VFX), simulaciones físicas.
+
+🏗 Ingeniería y CAD
+
+Diseño asistido por computadora.
+
+🏥 Medicina
+
+Reconstrucción 3D de órganos (tomografías).
+
+📊 Visualización científica
+
+Representación de datos complejos.
+
+En Blender puedes ver aplicación directa en:
+
+Modelado arquitectónico
+
+Animación
+
+Simulación física
+
+Renderizado realista
+
+# 1.3 Aspectos matemáticos de la graficación
+
+La base matemática incluye:
+
+- Álgebra Lineal
+
+Vectores
+
+Matrices
+
+Transformaciones lineales
+
+Ejemplo en Blender:
+Cuando escalas, rotas o trasladas un objeto, internamente se aplican matrices de transformación.
+
+- Geometría Analítica
+
+Ecuaciones de la recta
+
+Ecuaciones del plano
+
+Coordenadas cartesianas y homogéneas
+
+- Transformaciones 2D y 3D
+
+Traslación
+
+Rotación
+
+Escalamiento
+
+Proyección
+
+- Modelos de iluminación
+
+Producto punto
+
+Normales
+
+Reflexión y refracción
+
+# 1.4 Modelos de color: RGB, CMY, HSV y HSL
+🔴 RGB (Red, Green, Blue)
+
+Modelo aditivo.
+
+Usado en pantallas.
+
+Cada color se representa como combinación de rojo, verde y azul.
+
+En Blender, el color base de los materiales usa RGB.
+
+🔵 CMY (Cyan, Magenta, Yellow)
+
+Modelo sustractivo.
+
+Usado en impresión.
+
+Absorbe luz en lugar de emitirla.
+
+🟡 HSV (Hue, Saturation, Value)
+
+Hue: tono (color puro)
+
+Saturation: intensidad
+
+Value: brillo
+
+Más intuitivo para artistas digitales.
+
+🟣 HSL (Hue, Saturation, Lightness)
+
+Similar a HSV pero cambia la forma de medir luminosidad.
+
+En Blender puedes cambiar entre modos RGB y HSV al seleccionar colores.
+
+<img width="1792" height="1120" alt="Captura de pantalla 2026-02-22 a la(s) 12 19 30" src="https://github.com/user-attachments/assets/c7c171aa-3310-407c-bdea-2cddfee57b7d" />
+
+
+
+# 1.5 Representación y trazo de líneas y polígonos
+
+En gráficos digitales, la pantalla está formada por píxeles.
+
+- Algoritmo de Bresenham
+
+Permite dibujar líneas rectas usando solo números enteros.
+
+- Representación de polígonos
+
+Un polígono se define mediante:
+
+Vértices
+
+Aristas
+
+Caras
+
+En Blender:
+
+Un cubo está formado por 8 vértices.
+
+12 aristas.
+
+6 caras.
+
+Todo modelo 3D está compuesto por mallas poligonales.
+
+# 1.5 Formatos de imagen
+
+Los formatos pueden ser:
+
+- Raster (Mapa de bits)
+
+PNG
+
+JPG
+
+BMP
+
+TIFF
+
+Se componen de píxeles.
+
+- Vectoriales
+
+SVG
+
+EPS
+
+Se componen de ecuaciones matemáticas.
+
+Blender exporta imágenes en:
+
+PNG
+
+JPG
+
+OpenEXR (alta calidad)
+
+# 1.6 Procesamiento de mapas de bits
+
+Un mapa de bits es una matriz de píxeles.
+
+Cada píxel almacena información:
+
+Intensidad
+
+Color
+
+Canal alfa (transparencia)
+
+Procesamiento incluye:
+
+Filtros
+
+Ajuste de brillo
+
+Contraste
+
+Corrección gamma
+
+En Blender:
+
+El compositor permite aplicar filtros.
+
+Se pueden modificar mapas de textura.
+
+Se usan nodos para manipulación de imágenes.
+
+# Conexión general con Blender
+
+Todo lo que haces en Blender está basado en:
+
+Matemáticas (vectores y matrices)
+
+Modelos de iluminación
+
+Representación poligonal
+
+Procesamiento de mapas de bits
+
+Modelos de color
+
+Blender es simplemente la implementación práctica de los fundamentos que describen libros como:
+
+Hearn & Baker
+
+Angel & Shreiner
+
+Foley
+
+# Bibliografía
+
+Hearn, D., & Baker, M. P. (2011). Computer graphics with OpenGL (4th ed.). Pearson Education.
+
+Foley, J. D., van Dam, A., Feiner, S. K., & Hughes, J. F. (2013). Computer graphics: Principles and practice (3rd ed.). Addison-Wesley.
+
 
 #  Introducción a Blender y uso de Scripting
 
